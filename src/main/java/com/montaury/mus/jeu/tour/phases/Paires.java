@@ -10,8 +10,10 @@ public class Paires extends Phase {
 
   @Override
   protected boolean peutParticiper(Joueur joueur) {
-    if(joueur.main().aDesPaires()==false){
-      System.out.print(joueur.nom());
+    System.out.print(joueur.nom());
+    if(joueur.main().aDesPaires()){
+      System.out.println(" a une ou plusieurs paires");
+    }else{
       System.out.println(" n'a pas de paires");
     }
     return joueur.main().aDesPaires();
