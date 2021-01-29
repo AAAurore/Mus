@@ -8,6 +8,7 @@ import java.util.Queue;
 import static java.util.Collections.shuffle;
 
 public class Paquet {
+  //ATTRIBUTS
   public static Paquet nouveauMelange(Defausse defausse) {
     List<Carte> cartes = new ArrayList<>(Carte.toutes());
     shuffle(cartes);
@@ -17,11 +18,13 @@ public class Paquet {
   private final Queue<Carte> cartes;
   private final Defausse defausse;
 
+  //CONSTRUCTEUR
   Paquet(List<Carte> cartes, Defausse defausse) {
     this.cartes = new ArrayDeque<>(cartes);
     this.defausse = defausse;
   }
 
+  //MÉTHODE SPÉCIFIQUE
   public List<Carte> tirer(int nbCartes) {
     if (cartes.size() < nbCartes) {
       List<Carte> cartesDefaussees = this.defausse.reprendreCartes();

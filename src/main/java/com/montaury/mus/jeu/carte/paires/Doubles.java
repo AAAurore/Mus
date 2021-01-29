@@ -1,5 +1,7 @@
 package com.montaury.mus.jeu.carte.paires;
 
+//Double : La combinaison de 4 cartes d'un joueur dont toutes sont du même rang
+//ou si elles sont appariées 2 par 2
 public class Doubles extends Paires {
 
   private final Simple meilleurePaire;
@@ -12,6 +14,7 @@ public class Doubles extends Paires {
   }
 
   @Override
+  //Comparer les paires entre deux joueurs
   public boolean estMeilleureOuEgaleA(Paires paires) {
     if (!(paires instanceof Doubles)) {
       return true;
