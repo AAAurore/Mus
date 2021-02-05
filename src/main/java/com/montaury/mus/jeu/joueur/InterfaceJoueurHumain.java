@@ -17,19 +17,25 @@ import java.util.stream.Collectors;
 
 public class InterfaceJoueurHumain implements InterfaceJoueur {
 
-  private final Scanner scanner = new Scanner(System.in);
   private Main main;
 
   @Override
   public boolean veutAllerMus() {
-    println("Souhaitez-vous aller mus ? (o/n)");
-    return scanner.next().equals("o");
+    while(true){
+      println("Souhaitez-vous aller mus ? (o/n)");
+      String saisie = new Scanner(System.in).next();
+
+      if(saisie.equals("o")){return true;}
+      else if(saisie.equals("n")){return false;}
+
+      println("Erreur ! Veuillez saisir uniquement 'o' ou 'n'");
+    }
   }
 
   @Override
   public List<Carte> cartesAJeter() {
     println("Veuillez saisir les cartes à jeter (ex: 1,3) :");
-    String aJeter = scanner.next();
+    String aJeter = new Scanner(System.in).next();
     return Arrays.stream(aJeter.split(","))
       .mapToInt(Integer::parseInt)
       .mapToObj(indiceCarte -> main.cartesDuPlusGrandAuPlusPetit().get(indiceCarte - 1))
@@ -38,17 +44,19 @@ public class InterfaceJoueurHumain implements InterfaceJoueur {
 
   @Override
   public Choix faireChoixParmi(List<TypeChoix> choixPossibles) {
-    print("Faites un choix entre (en toutes lettres): ");
-    println(choixPossibles.stream().map(TypeChoix::nom).collect(Collectors.joining(" | ")));
-    String choix = scanner.next();
-    if (choix.equalsIgnoreCase("Paso")) return new Paso();
-    if (choix.equalsIgnoreCase("Imido")) return new Imido();
-    if (choix.equalsIgnoreCase("Hordago")) return new Hordago();
-    if (choix.equalsIgnoreCase("Idoki")) return new Idoki();
-    if (choix.equalsIgnoreCase("Tira")) return new Tira();
-    if (choix.equalsIgnoreCase("Gehiago")) return new Gehiago(1);
-    if (choix.equalsIgnoreCase("Kanta")) return new Kanta();
-    return new Paso();
+    while(true) {
+      print("Faites un choix entre (en toutes lettres): ");
+      println(choixPossibles.stream().map(TypeChoix::nom).collect(Collectors.joining(" | ")));
+      String choix = new Scanner(System.in).next();
+      if (choix.equalsIgnoreCase("Paso")) return new Paso();
+      if (choix.equalsIgnoreCase("Imido")) return new Imido();
+      if (choix.equalsIgnoreCase("Hordago")) return new Hordago();
+      if (choix.equalsIgnoreCase("Idoki")) return new Idoki();
+      if (choix.equalsIgnoreCase("Tira")) return new Tira();
+      if (choix.equalsIgnoreCase("Gehiago")) return new Gehiago(1);
+      if (choix.equalsIgnoreCase("Kanta")) return new Kanta();
+      println("Erreur dans la saisie de l'action. Veuilez saisir l'un des choix proposé");
+    }
   }
 
   @Override
