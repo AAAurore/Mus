@@ -48,13 +48,13 @@ public class InterfaceJoueurHumain implements InterfaceJoueur {
       print("Faites un choix entre (en toutes lettres): ");
       println(choixPossibles.stream().map(TypeChoix::nom).collect(Collectors.joining(" | ")));
       String choix = new Scanner(System.in).next();
-      if (choix.equalsIgnoreCase("Paso")) return new Paso();
-      if (choix.equalsIgnoreCase("Imido")) return new Imido();
-      if (choix.equalsIgnoreCase("Hordago")) return new Hordago();
-      if (choix.equalsIgnoreCase("Idoki")) return new Idoki();
-      if (choix.equalsIgnoreCase("Tira")) return new Tira();
-      if (choix.equalsIgnoreCase("Gehiago")) return new Gehiago(1);
-      if (choix.equalsIgnoreCase("Kanta")) return new Kanta();
+      if (choixPossibles.contains(TypeChoix.PASO) && choix.equalsIgnoreCase("Paso")) return new Paso();
+      if (choixPossibles.contains(TypeChoix.IMIDO) && choix.equalsIgnoreCase("Imido")) return new Imido();
+      if (choixPossibles.contains(TypeChoix.HORDAGO) && choix.equalsIgnoreCase("Hordago")) return new Hordago();
+      if (choixPossibles.contains(TypeChoix.IDOKI) && choix.equalsIgnoreCase("Idoki")) return new Idoki();
+      if (choixPossibles.contains(TypeChoix.TIRA) && choix.equalsIgnoreCase("Tira")) return new Tira();
+      if (choixPossibles.contains(TypeChoix.GEHIAGO) && choix.equalsIgnoreCase("Gehiago")) return new Gehiago(1);
+      if (choixPossibles.contains(TypeChoix.KANTA) && choix.equalsIgnoreCase("Kanta")) return new Kanta();
       println("Erreur dans la saisie de l'action. Veuilez saisir l'un des choix proposé");
     }
   }
