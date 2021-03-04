@@ -3,6 +3,8 @@ package com.montaury.mus.jeu;
 import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Opposants;
+import com.montaury.mus.jeu.tour.phases.dialogue.TypeChoix;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.Optional;
 public class Partie {
   //ATTRIBUT
   private final AffichageEvenementsDeJeu affichage;
+  private final TypePartie typePartie = TypePartie.SOLOORDI;
 
   //CONSTRUCTEUR
   public Partie(AffichageEvenementsDeJeu affichage) {

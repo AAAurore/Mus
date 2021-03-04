@@ -1,13 +1,16 @@
 package com.montaury.mus.jeu;
 
-    public enum TypePartie {
-        MULTIORDIS("MultiOrdis"),
-        SOLOORDI("SoloOrdi");
+public enum TypePartie {
+    MULTIORDIS("MultiOrdis"),
+    SOLOORDI("SoloOrdi");
 
-        private final String nom;
+    private final String nom;
 
-        TypePartie(String nom) {
-            this.nom = nom;
-        }
+    TypePartie(String nom) {
+        this.nom = nom;
     }
 
+    public String nom() {
+        return nom;
+    }
+}
