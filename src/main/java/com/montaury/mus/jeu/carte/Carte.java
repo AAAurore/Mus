@@ -72,17 +72,14 @@ public enum Carte {
     return Set.of(values());
   }
 
-  //ATTRIBUTS
   private final TypeCarte type;
   private final ValeurCarte valeur;
 
-  //CONSTRUCTEUR
   Carte(ValeurCarte valeur, TypeCarte type) {
     this.valeur = valeur;
     this.type = type;
   }
 
-  //GETTERS / SETTERS
   public TypeCarte type() {
     return type;
   }
@@ -99,7 +96,6 @@ public enum Carte {
     return valeur.valeurPourJeu();
   }
 
-  //MÉTHODE SPÉCIFIQUE
   public ValeurCarte.Comparaison comparerAvec(Carte autre) {
     return valeur.comparerAvec(autre.valeur);
   }

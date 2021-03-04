@@ -17,12 +17,10 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Tour {
-  //ATTRIBUTS
   private final AffichageEvenementsDeJeu affichage;
   private final Paquet paquet;
   private final Defausse defausse;
 
-  //CONSTRUCTEUR
   public Tour(AffichageEvenementsDeJeu affichage) {
     this.affichage = affichage;
     this.defausse = new Defausse();
@@ -35,7 +33,6 @@ public class Tour {
     this.defausse = defausse;
   }
 
-  //MÉTHODES SPÉCIFIQUES
   public void jouer(Opposants opposants, Manche.Score score) {
     affichage.nouveauTour(opposants);
     new Mus(paquet, defausse, affichage).jouer(opposants);
@@ -57,9 +54,7 @@ public class Tour {
     return List.of(new Grand(), new Petit(), new Paires(), phaseDuJeu);
   }
 
-  //AJOUT DE LA CLASSE RESULTATSPHASES
   static class ResultatsPhases {
-    //MÉTHODES SPÉCIFIQUES
     private final List<Phase.Resultat> resultats = new ArrayList<>();
 
     public void ajouter(Phase.Resultat resultat) {
