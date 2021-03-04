@@ -4,7 +4,7 @@ public enum TypePartie {
     MULTIORDIS("MultiOrdis"),
     SOLOORDI("SoloOrdi");
 
-    private final String nom;
+    private String nom;
 
     TypePartie(String nom) {
         this.nom = nom;

@@ -23,7 +23,7 @@ class PartieTest {
     Joueur joueurEsku = new Joueur("J1", interfaceJoueurEsku);
     Joueur joueurZaku = new Joueur("J2", interfaceJoueurZaku);
     opposants = new Opposants(joueurEsku, joueurZaku);
-    partie = new Partie(mock(AffichageEvenementsDeJeu.class));
+    partie = new Partie(mock(AffichageEvenementsDeJeu.class),TypePartie.SOLOORDI);
   }
 
   @Test

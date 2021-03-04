@@ -8,8 +8,8 @@ public class Joueur {
     return new Joueur(nom, new InterfaceJoueurHumain());
   }
 
-  public static Joueur ordinateur() {
-    return new Joueur("Ordinateur", new InterfaceJoueurOrdinateur());
+  public static Joueur ordinateur(int numero) {
+    return new Joueur("Ordinateur"+numero, new InterfaceJoueurOrdinateur());
   }
 
   private final String nom;

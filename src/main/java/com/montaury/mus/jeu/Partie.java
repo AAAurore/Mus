@@ -13,11 +13,15 @@ import java.util.Optional;
 
 public class Partie {
   private final AffichageEvenementsDeJeu affichage;
-  private final TypePartie typePartie = TypePartie.SOLOORDI;
 
-  public Partie(AffichageEvenementsDeJeu affichage) {
+  private TypePartie typePartie;
+
+  public Partie(AffichageEvenementsDeJeu affichage ,TypePartie typePartie ) {
     this.affichage = affichage;
+    this.typePartie = typePartie;
   }
+
+  public TypePartie typePartie() { return typePartie; }
 
   public Resultat jouer(Opposants opposants) {
     affichage.nouvellePartie();
