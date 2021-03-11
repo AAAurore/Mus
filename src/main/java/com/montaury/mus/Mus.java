@@ -28,9 +28,9 @@ public class Mus {
       else if(saisie.equals("2")){typeDeLaPartie = TypePartie.MULTIORDIS; break;}
       System.out.println("Erreur ! Veuillez saisir uniquement 1 ou 2");
     }
-    Joueur humain = Joueur.humain(nomJoueur);//enregistrement du nom du joueur
+    Equipe humain = new Equipe (Joueur.humain(nomJoueur));//enregistrement du nom du joueur
     Partie partie = new Partie(new AffichageConsoleEvenementsDeJeu(humain),typeDeLaPartie);
-    Opposants adversaires = new Opposants(humain, Joueur.ordinateur(1));
+    Opposants adversaires = new Opposants(humain, new Equipe(Joueur.ordinateur(1)));
     /*
     switch(partie.typePartie()){
       case SOLOORDI -> adversaires = new Opposants(humain, Joueur.ordinateur(1));
@@ -38,7 +38,6 @@ public class Mus {
       case MULTIORDIS -> adversaires = new Opposants(Equipe(humain, Joueur.ordinateur(1)),Equipe(Joueur.ordinateur(2), Joueur.ordinateur(3)))
     }
     */
-
     Partie.Resultat resultat = partie.jouer(adversaires);
     System.out.println("Le vainqueur de la partie est " + resultat.vainqueur().nom());
   }

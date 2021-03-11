@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 public class AffichageConsoleEvenementsDeJeu implements AffichageEvenementsDeJeu {
   private final Joueur joueurCourant;
 
-  public AffichageConsoleEvenementsDeJeu(Joueur courant) {
-    this.joueurCourant = courant;
+  public AffichageConsoleEvenementsDeJeu(Equipe courant) {
+    this.joueurCourant = courant.joueur();
   }
 
   @Override
@@ -30,9 +30,7 @@ public class AffichageConsoleEvenementsDeJeu implements AffichageEvenementsDeJeu
   }
 
   @Override
-  public void nouveauTour(Opposants opposants) {
-    println(opposants.joueurEsku().nom() + " est esku");
-  }
+  public void nouveauTour(Opposants opposants) { println(opposants.joueurEsku().nom() + " est esku"); }
 
   @Override
   public void tourTermine(Opposants opposants, Manche.Score score) {
