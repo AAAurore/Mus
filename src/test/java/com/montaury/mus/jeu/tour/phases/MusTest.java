@@ -2,10 +2,8 @@ package com.montaury.mus.jeu.tour.phases;
 
 import com.montaury.mus.jeu.carte.Carte;
 import com.montaury.mus.jeu.carte.Defausse;
-import com.montaury.mus.jeu.joueur.AffichageConsoleEvenementsDeJeu;
-import com.montaury.mus.jeu.joueur.InterfaceJoueur;
-import com.montaury.mus.jeu.joueur.Joueur;
-import com.montaury.mus.jeu.joueur.Opposants;
+import com.montaury.mus.jeu.joueur.*;
+
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,12 +20,14 @@ class MusTest {
   @BeforeEach
   void setUp() {
     defausse = new Defausse();
-    mus = new Mus(paquetEntierCroissant(), defausse, new AffichageConsoleEvenementsDeJeu(joueurEsku));
+    mus = new Mus(paquetEntierCroissant(), defausse, new AffichageConsoleEvenementsDeJeu(new Equipe(joueurEsku)));
     interfaceJoueurEsku = mock(InterfaceJoueur.class);
     interfaceJoueurZaku = mock(InterfaceJoueur.class);
     joueurEsku = new Joueur("J1", interfaceJoueurEsku);
     joueurZaku = new Joueur("J2", interfaceJoueurZaku);
-    opposants = new Opposants(joueurEsku, joueurZaku);
+    Equipe equipe1 = new Equipe(joueurEsku);
+    Equipe equipe2 = new Equipe(joueurZaku);
+    opposants = new Opposants(equipe1, equipe2);
   }
 
   @Test
@@ -100,6 +100,8 @@ class MusTest {
   private InterfaceJoueur interfaceJoueurZaku;
   private Joueur joueurEsku;
   private Joueur joueurZaku;
+  private Equipe equipe1;
+  private Equipe equipe2;
   private Opposants opposants;
   private Defausse defausse;
 }

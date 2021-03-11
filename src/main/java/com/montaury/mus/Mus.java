@@ -29,8 +29,9 @@ public class Mus {
       System.out.println("Erreur ! Veuillez saisir uniquement 1 ou 2");
     }
     Equipe humain = new Equipe (Joueur.humain(nomJoueur));//enregistrement du nom du joueur
+    Equipe ordinateur = new Equipe(Joueur.ordinateur(1));
     Partie partie = new Partie(new AffichageConsoleEvenementsDeJeu(humain),typeDeLaPartie);
-    Opposants adversaires = new Opposants(humain, new Equipe(Joueur.ordinateur(1)));
+    Opposants adversaires = new Opposants(humain, ordinateur);
     /*
     switch(partie.typePartie()){
       case SOLOORDI -> adversaires = new Opposants(humain, Joueur.ordinateur(1));
