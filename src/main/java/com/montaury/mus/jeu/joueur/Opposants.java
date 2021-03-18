@@ -4,26 +4,28 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Opposants {
-  private Equipe equipeEsku;
-  private Equipe equipeZaku;
+  private Equipe equipe1;
+  private Equipe equipe2;
+  private int numEquipeEsku = 1;
+  private int numJoueurEsku = 1;
+
 
   public Opposants(Equipe equipe1, Equipe equipe2) {
-    this.equipeEsku = equipe1;
-    this.equipeZaku = equipe2;
+    this.equipe1 = equipe1;
+    this.equipe2 = equipe2;
   }
 
   public void tourner() {
-    Equipe tmp = equipeEsku;
-    equipeEsku = equipeZaku;
-    equipeZaku = tmp;
+    //if(numEquipeEsku == 2){ numJoueurEsku = (numJoueurEsku%2)+1; }
+    numEquipeEsku = (numEquipeEsku%2)+1;
   }
 
   public Joueur joueurEsku() {
-    return equipeEsku.joueur();
+    return (numEquipeEsku == 1 ? equipe1.joueur() : equipe2.joueur());
   }
 
   public Joueur joueurZaku() {
-    return equipeZaku.joueur();
+    return (numEquipeEsku == 1 ? equipe2.joueur() : equipe1.joueur());
   }
 
   public Iterator<Joueur> itererDansLOrdre() {
