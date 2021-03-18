@@ -21,11 +21,26 @@ public class Opposants {
   }
 
   public Joueur joueurEsku() {
-    return (numEquipeEsku == 1 ? equipe1.joueur() : equipe2.joueur());
+    Joueur joueurEsku;
+    if(numEquipeEsku == 1){
+      joueurEsku = (numJoueurEsku == 1 ? equipe1.joueur1() : equipe1.joueur2());
+    }
+    else{
+      joueurEsku = (numJoueurEsku == 1 ? equipe2.joueur1() : equipe2.joueur2());
+    }
+    return joueurEsku;
   }
 
   public Joueur joueurZaku() {
-    return (numEquipeEsku == 1 ? equipe2.joueur() : equipe1.joueur());
+    Joueur joueurZaku;
+
+    if(numEquipeEsku == 1){
+      joueurZaku = (numJoueurEsku == 1 ? equipe2.joueur2() : equipe2.joueur1());
+    }
+    else{
+      joueurZaku = (numJoueurEsku == 1 ? equipe1.joueur1() : equipe1.joueur2());
+    }
+    return joueurZaku;
   }
 
   public Iterator<Joueur> itererDansLOrdre() {

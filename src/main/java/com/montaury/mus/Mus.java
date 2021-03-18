@@ -28,17 +28,22 @@ public class Mus {
       else if(saisie.equals("2")){typeDeLaPartie = TypePartie.MULTIORDIS; break;}
       System.out.println("Erreur ! Veuillez saisir uniquement 1 ou 2");
     }
-    Equipe humain = new Equipe (Joueur.humain(nomJoueur));//enregistrement du nom du joueur
-    Equipe ordinateur = new Equipe(Joueur.ordinateur(1));
-    Partie partie = new Partie(new AffichageConsoleEvenementsDeJeu(humain),typeDeLaPartie);
-    Opposants adversaires = new Opposants(humain, ordinateur);
-    /*
-    switch(partie.typePartie()){
-      case SOLOORDI -> adversaires = new Opposants(humain, Joueur.ordinateur(1));
+    Joueur humain = Joueur.humain(nomJoueur);//enregistrement du nom du joueur
+    Opposants adversaires;
+    Equipe equipeHumaine;
+    switch(typeDeLaPartie){
+      case SOLOORDI :
+        equipeHumaine = new Equipe(humain);
+        adversaires = new Opposants(equipeHumaine, new Equipe(Joueur.ordinateur(1)));
+        break;
 
-      case MULTIORDIS -> adversaires = new Opposants(Equipe(humain, Joueur.ordinateur(1)),Equipe(Joueur.ordinateur(2), Joueur.ordinateur(3)))
+      case MULTIORDIS :
+        equipeHumaine = new Equipe(humain, Joueur.ordinateur(1));
+        adversaires = new Opposants(equipeHumaine,new Equipe(Joueur.ordinateur(2), Joueur.ordinateur(3)));
+        break;
+      default : throw new IllegalStateException("Unexpected value: " + typeDeLaPartie);
     }
-    */
+    Partie partie = new Partie(new AffichageConsoleEvenementsDeJeu(equipeHumaine),typeDeLaPartie);
     Partie.Resultat resultat = partie.jouer(adversaires);
     System.out.println("Le vainqueur de la partie est " + resultat.vainqueur().nom());
   }

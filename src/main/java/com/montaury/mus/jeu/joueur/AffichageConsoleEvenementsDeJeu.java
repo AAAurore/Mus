@@ -10,7 +10,7 @@ public class AffichageConsoleEvenementsDeJeu implements AffichageEvenementsDeJeu
   private final Joueur joueurCourant;
 
   public AffichageConsoleEvenementsDeJeu(Equipe courant) {
-    this.joueurCourant = courant.joueur();
+    this.joueurCourant = courant.joueur1();
   }
 
   @Override
