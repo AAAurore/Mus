@@ -29,19 +29,17 @@ public class Mus {
       System.out.println("Erreur ! Veuillez saisir uniquement 1 ou 2");
     }
     Joueur humain = Joueur.humain(nomJoueur);//enregistrement du nom du joueur
-    Opposants adversaires;
-    Equipe equipeHumaine;
-    switch(typeDeLaPartie){
-      case SOLOORDI :
+    Opposants adversaires = null;
+    Equipe equipeHumaine = null;
+    switch (typeDeLaPartie) {
+      case SOLOORDI -> {
         equipeHumaine = new Equipe(humain);
         adversaires = new Opposants(equipeHumaine, new Equipe(Joueur.ordinateur(1)));
-        break;
-
-      case MULTIORDIS :
+      }
+      case MULTIORDIS -> {
         equipeHumaine = new Equipe(humain, Joueur.ordinateur(1));
-        adversaires = new Opposants(equipeHumaine,new Equipe(Joueur.ordinateur(2), Joueur.ordinateur(3)));
-        break;
-      default : throw new IllegalStateException("Unexpected value: " + typeDeLaPartie);
+        adversaires = new Opposants(equipeHumaine, new Equipe(Joueur.ordinateur(2), Joueur.ordinateur(3)));
+      }
     }
     Partie partie = new Partie(new AffichageConsoleEvenementsDeJeu(equipeHumaine),typeDeLaPartie);
     Partie.Resultat resultat = partie.jouer(adversaires);

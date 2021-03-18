@@ -4,8 +4,9 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Opposants {
-  private Equipe equipe1;
-  private Equipe equipe2;
+  private final Equipe equipe1;
+  private final Equipe equipe2;
+  private boolean solo;
   private int numEquipeEsku = 1;
   private int numJoueurEsku = 1;
 
@@ -13,10 +14,11 @@ public class Opposants {
   public Opposants(Equipe equipe1, Equipe equipe2) {
     this.equipe1 = equipe1;
     this.equipe2 = equipe2;
+    this.solo = (equipe1.joueur2().nom().equals(""));
   }
 
   public void tourner() {
-    //if(numEquipeEsku == 2){ numJoueurEsku = (numJoueurEsku%2)+1; }
+    if(numEquipeEsku == 2){ numJoueurEsku = (numJoueurEsku%2)+1; }
     numEquipeEsku = (numEquipeEsku%2)+1;
   }
 
@@ -33,12 +35,16 @@ public class Opposants {
 
   public Joueur joueurZaku() {
     Joueur joueurZaku;
-
-    if(numEquipeEsku == 1){
-      joueurZaku = (numJoueurEsku == 1 ? equipe2.joueur2() : equipe2.joueur1());
+    if(!solo){ // Si il n'existe pas de deuxième joueur la condition d'échange ne fonctionne pas comme en équipe
+      if(numEquipeEsku == 1){
+        joueurZaku = (numJoueurEsku == 1 ? equipe2.joueur2() : equipe2.joueur1());
+      }
+      else{
+        joueurZaku = (numJoueurEsku == 1 ? equipe1.joueur1() : equipe1.joueur2());
+      }
     }
     else{
-      joueurZaku = (numJoueurEsku == 1 ? equipe1.joueur1() : equipe1.joueur2());
+      joueurZaku = (numEquipeEsku == 1 ? equipe2.joueur1() : equipe1.joueur1());
     }
     return joueurZaku;
   }

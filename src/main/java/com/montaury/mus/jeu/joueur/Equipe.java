@@ -6,7 +6,7 @@ public class Equipe {
 
     public Equipe(Joueur j1) {
         this.joueur1 = j1;
-        this.joueur2 = new Joueur("Rien", new InterfaceJoueurHumain());
+        this.joueur2 = new Joueur("", new InterfaceJoueurHumain());
     }
 
     public Equipe(Joueur j1, Joueur j2) {
