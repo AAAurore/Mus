@@ -98,10 +98,9 @@ public class Opposants {
 
     @Override
     public Joueur next() {
+      Joueur next = suivant;
       if(opposants.solo) {
-        Joueur next = suivant;
         suivant = suivant == opposants.joueurEsku() ? opposants.joueurZaku() : opposants.joueurEsku();
-        return next;
       }
       else{
         String nomSuivant = suivant.nom();
@@ -129,8 +128,8 @@ public class Opposants {
             }
           }
         }
-        return suivant;
       }
+      return next;
     }
   }
 }
