@@ -54,7 +54,22 @@ public class Opposants {
   }
 
   public List<Joueur> dansLOrdre() {
-    return List.of(joueurEsku(), joueurZaku());
+    if(solo){
+      return List.of(joueurEsku(), joueurZaku());
+    }
+    else {
+      Joueur deuxieme;
+      Joueur troisieme;
+      if(numEquipeEsku == 1){
+        deuxieme = (numJoueurEsku == 1 ? equipe2.joueur1() : equipe2.joueur2());
+        troisieme = (numJoueurEsku == 1 ? equipe1.joueur2() : equipe1.joueur1());
+      }
+      else{
+        deuxieme = (numJoueurEsku == 1 ? equipe1.joueur2() : equipe1.joueur1());
+        troisieme = (numJoueurEsku == 1 ? equipe2.joueur2() : equipe2.joueur1());
+      }
+      return List.of(joueurEsku(),deuxieme,troisieme, joueurZaku());
+    }
   }
 
   private static class IteratorInfini implements Iterator<Joueur> {
@@ -73,9 +88,12 @@ public class Opposants {
 
     @Override
     public Joueur next() {
-      Joueur next = suivant;
-      suivant = suivant == opposants.joueurEsku() ? opposants.joueurZaku() : opposants.joueurEsku();
-      return next;
+      if(opposants.solo) {
+        Joueur next = suivant;
+        suivant = suivant == opposants.joueurEsku() ? opposants.joueurZaku() : opposants.joueurEsku();
+        return next;
+      }
+      return null;
     }
   }
 }
