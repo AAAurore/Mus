@@ -6,7 +6,7 @@ import java.util.List;
 public class Opposants {
   private final Equipe equipe1;
   private final Equipe equipe2;
-  private boolean solo;
+  private final boolean solo;
   private int numEquipeEsku = 1;
   private int numJoueurEsku = 1;
 
@@ -17,8 +17,18 @@ public class Opposants {
     this.solo = (equipe1.joueur2().nom().equals(""));
   }
 
+  public Equipe equipe1() {
+    return equipe1;
+  }
+
+  public Equipe equipe2() {
+    return equipe2;
+  }
+
   public void tourner() {
-    if(numEquipeEsku == 2){ numJoueurEsku = (numJoueurEsku%2)+1; }
+    if(!solo){
+      if(numEquipeEsku == 2){ numJoueurEsku = (numJoueurEsku%2)+1; }
+    }
     numEquipeEsku = (numEquipeEsku%2)+1;
   }
 
@@ -68,7 +78,7 @@ public class Opposants {
         deuxieme = (numJoueurEsku == 1 ? equipe1.joueur2() : equipe1.joueur1());
         troisieme = (numJoueurEsku == 1 ? equipe2.joueur2() : equipe2.joueur1());
       }
-      return List.of(joueurEsku(),deuxieme,troisieme, joueurZaku());
+      return List.of(joueurEsku(), deuxieme, troisieme, joueurZaku());
     }
   }
 
@@ -93,7 +103,34 @@ public class Opposants {
         suivant = suivant == opposants.joueurEsku() ? opposants.joueurZaku() : opposants.joueurEsku();
         return next;
       }
-      return null;
+      else{
+        String nomSuivant = suivant.nom();
+        String nomE1J1 = opposants.equipe1().joueur1().nom();
+        String nomE1J2 = opposants.equipe1().joueur2().nom();
+        String nomE2J1 = opposants.equipe2().joueur1().nom();
+        String nomE2J2 = opposants.equipe2().joueur2().nom();
+
+
+        if(nomSuivant.equals(nomE1J1)){
+          suivant = opposants.equipe2().joueur1();
+        }
+        else{
+          if(nomSuivant.equals(nomE1J2)){
+            suivant = opposants.equipe2().joueur2();
+          }
+          else{
+            if(nomSuivant.equals(nomE2J1)){
+              suivant = opposants.equipe1().joueur2();
+            }
+            else{
+              if(nomSuivant.equals(nomE2J2)){
+                suivant = opposants.equipe1().joueur1();
+              }
+            }
+          }
+        }
+        return suivant;
+      }
     }
   }
 }

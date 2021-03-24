@@ -28,6 +28,7 @@ public class Mus {
       else if(saisie.equals("2")){typeDeLaPartie = TypePartie.MULTIORDIS; break;}
       System.out.println("Erreur ! Veuillez saisir uniquement 1 ou 2");
     }
+
     Joueur humain = Joueur.humain(nomJoueur);//enregistrement du nom du joueur
     Opposants adversaires = null;
     Equipe equipeHumaine = null;
@@ -37,8 +38,19 @@ public class Mus {
         adversaires = new Opposants(equipeHumaine, new Equipe(Joueur.ordinateur(1)));
       }
       case MULTIORDIS -> {
-        equipeHumaine = new Equipe(humain, Joueur.ordinateur(1));
-        adversaires = new Opposants(equipeHumaine, new Equipe(Joueur.ordinateur(2), Joueur.ordinateur(3)));
+        System.out.print("Entrez votre nom d'équipe: ");
+        String nomEquipeHumain="";
+        String nomEquipeOrdinateurs = "Ordinateurs";
+        while(true)
+        {
+          nomEquipeHumain = scanner.nextLine();//scanne de l'input user
+          if(!nomEquipeHumain.equals("")){break;}
+          System.out.println("Merci de rentrer votre nom d'équipe");
+        }
+        equipeHumaine = new Equipe(humain, Joueur.ordinateur(1),nomEquipeHumain);
+
+        if(nomEquipeHumain.equals(nomEquipeOrdinateurs)){nomEquipeOrdinateurs = "Adversaires";}
+        adversaires = new Opposants(equipeHumaine, new Equipe(Joueur.ordinateur(2), Joueur.ordinateur(3),nomEquipeOrdinateurs));
       }
     }
     Partie partie = new Partie(new AffichageConsoleEvenementsDeJeu(equipeHumaine),typeDeLaPartie);
