@@ -45,8 +45,8 @@ class TourTest {
     tour.jouer(opposants, score);
 
     assertThat(score.vainqueur()).isEmpty();
-    assertThat(score.scoreParJoueur()).containsEntry(joueurEsku, 8);
-    assertThat(score.scoreParJoueur()).containsEntry(joueurZaku, 0);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurEsku.equipe(), 8);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurZaku.equipe(), 0);
   }
 
   @Test
@@ -57,8 +57,8 @@ class TourTest {
     tour.jouer(opposants, score);
 
     assertThat(score.vainqueur()).isEmpty();
-    assertThat(score.scoreParJoueur()).containsEntry(joueurEsku, 1);
-    assertThat(score.scoreParJoueur()).containsEntry(joueurZaku, 5);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurEsku.equipe(), 1);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurZaku.equipe(), 5);
   }
 
   @Test
@@ -68,9 +68,9 @@ class TourTest {
 
     tour.jouer(opposants, score);
 
-    assertThat(score.vainqueur()).contains(joueurZaku);
-    assertThat(score.scoreParJoueur()).containsEntry(joueurEsku, 0);
-    assertThat(score.scoreParJoueur()).containsEntry(joueurZaku, 40);
+    assertThat(score.vainqueur()).contains(joueurZaku.equipe());
+    assertThat(score.scoreParEquipe()).containsEntry(joueurEsku.equipe(), 0);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurZaku.equipe(), 40);
   }
 
   @Test
@@ -81,8 +81,8 @@ class TourTest {
     tour.jouer(opposants, score);
 
     assertThat(score.vainqueur()).isEmpty();
-    assertThat(score.scoreParJoueur()).containsEntry(joueurEsku, 2);
-    assertThat(score.scoreParJoueur()).containsEntry(joueurZaku, 10);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurEsku.equipe(), 2);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurZaku.equipe(), 10);
   }
 
   @Test
@@ -93,8 +93,8 @@ class TourTest {
     tour.jouer(opposants, score);
 
     assertThat(score.vainqueur()).isEmpty();
-    assertThat(score.scoreParJoueur()).containsEntry(joueurEsku, 4);
-    assertThat(score.scoreParJoueur()).containsEntry(joueurZaku, 16);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurEsku.equipe(), 4);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurZaku.equipe(), 16);
   }
 
   @Test
@@ -107,8 +107,8 @@ class TourTest {
     tour.jouer(opposants, score);
 
     assertThat(score.vainqueur()).isEmpty();
-    assertThat(score.scoreParJoueur()).containsEntry(joueurEsku, 7);
-    assertThat(score.scoreParJoueur()).containsEntry(joueurZaku, 0);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurEsku.equipe(), 7);
+    assertThat(score.scoreParEquipe()).containsEntry(joueurZaku.equipe(), 0);
   }
 
   private InterfaceJoueur interfaceJoueurEsku;

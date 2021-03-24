@@ -20,13 +20,13 @@ class MusTest {
   @BeforeEach
   void setUp() {
     defausse = new Defausse();
-    mus = new Mus(paquetEntierCroissant(), defausse, new AffichageConsoleEvenementsDeJeu(new Equipe(joueurEsku)));
     interfaceJoueurEsku = mock(InterfaceJoueur.class);
     interfaceJoueurZaku = mock(InterfaceJoueur.class);
     joueurEsku = new Joueur("J1", interfaceJoueurEsku);
     joueurZaku = new Joueur("J2", interfaceJoueurZaku);
     Equipe equipe1 = new Equipe(joueurEsku);
     Equipe equipe2 = new Equipe(joueurZaku);
+    mus = new Mus(paquetEntierCroissant(), defausse, new AffichageConsoleEvenementsDeJeu(equipe2));
     opposants = new Opposants(equipe1, equipe2);
   }
 
