@@ -3,22 +3,37 @@ package com.montaury.mus.jeu.tour.phases.dialogue;
 import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Opposants;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
-import static com.montaury.mus.jeu.tour.phases.dialogue.TypeChoix.PASO;
+import java.util.*;
+
+import static com.montaury.mus.jeu.tour.phases.dialogue.TypeChoix.*;
 
 public class Dialogue {
   private final List<ChoixJoueur> choix = new ArrayList<>();
 
   public final DialogueTermine derouler(AffichageEvenementsDeJeu affichage, Opposants opposants) {
     Iterator<Joueur> iteratorJoueur = opposants.itererDansLOrdre();
+    Map<String, Joueur> joueurNonMuet = new HashMap<String, Joueur>();
+    int max = opposants.solo() ? 2 : 4;
+    for(int i = 0; i < max; i++){
+      Joueur aAjouer = iteratorJoueur.next();
+      joueurNonMuet.put(aAjouer.nom(), aAjouer);
+    }
+    iteratorJoueur = opposants.itererDansLOrdre();
     do {
-      Joueur parlant = iteratorJoueur.next();
-      Choix choixJoueur = parlant.interfaceJoueur.faireChoixParmi(prochainsChoixPossibles());
-      affichage.choixFait(parlant, choixJoueur);
-      ajouter(choixJoueur, parlant);
+      Joueur actuel = iteratorJoueur.next();
+      if(joueurNonMuet.containsKey(actuel.nom())){
+        Choix choixJoueur = actuel.interfaceJoueur.faireChoixParmi(prochainsChoixPossibles());
+        affichage.choixFait(actuel, choixJoueur);
+        ajouter(choixJoueur, actuel);
+        if(choixJoueur.est(PASO) || choixJoueur.est(TIRA)){
+          joueurNonMuet.remove(actuel.nom());
+        }
+        else{
+          Joueur equipier = actuel.nom() == actuel.equipe().joueur1().nom() ? actuel.equipe().joueur2() : actuel.equipe().joueur1();
+          joueurNonMuet.remove(equipier);
+        }
+      }
     }
     while (enCours());
     return new DialogueTermine(choix);

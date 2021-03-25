@@ -30,7 +30,7 @@ public class AffichageConsoleEvenementsDeJeu implements AffichageEvenementsDeJeu
   }
 
   @Override
-  public void nouveauTour(Opposants opposants) { println(opposants.joueurEsku().nom() + " est esku"); }
+  public void nouveauTour(Opposants opposants) { println(opposants.joueurEsku().nom() + " ("+ opposants.joueurEsku().equipe().nom() + ") est esku"); }
 
   @Override
   public void tourTermine(Opposants opposants, Manche.Score score) {
@@ -42,7 +42,7 @@ public class AffichageConsoleEvenementsDeJeu implements AffichageEvenementsDeJeu
 
   @Override
   public void choixFait(Joueur joueur, Choix choix) {
-    println(joueur.nom() + ": " + description(choix));
+    println(joueur.nom() + " ("+joueur.equipe().nom()+"): " + description(choix));
   }
 
   private static String description(Choix choix) {

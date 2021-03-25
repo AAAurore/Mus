@@ -82,7 +82,11 @@ public class Opposants {
     }
   }
 
-  private static class IteratorInfini implements Iterator<Joueur> {
+    public boolean solo() {
+      return solo;
+    }
+
+    private static class IteratorInfini implements Iterator<Joueur> {
     private final Opposants opposants;
     private Joueur suivant;
 
