@@ -16,8 +16,8 @@ public class Dialogue {
     Map<String, Joueur> joueurNonMuet = new HashMap<String, Joueur>();
     int max = opposants.solo() ? 2 : 4;
     for(int i = 0; i < max; i++){
-      Joueur aAjouer = iteratorJoueur.next();
-      joueurNonMuet.put(aAjouer.nom(), aAjouer);
+      Joueur aAjouter = iteratorJoueur.next();
+      joueurNonMuet.put(aAjouter.nom(), aAjouter);
     }
     iteratorJoueur = opposants.itererDansLOrdre();
     do {
