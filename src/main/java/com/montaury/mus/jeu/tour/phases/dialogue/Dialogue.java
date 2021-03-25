@@ -26,6 +26,7 @@ public class Dialogue {
         Choix choixJoueur = actuel.interfaceJoueur.faireChoixParmi(prochainsChoixPossibles());
         affichage.choixFait(actuel, choixJoueur);
         ajouter(choixJoueur, actuel);
+        if(joueurNonMuet.size() == 1){break;}
         if(choixJoueur.est(PASO) || choixJoueur.est(TIRA)){
           joueurNonMuet.remove(actuel.nom());
         }
